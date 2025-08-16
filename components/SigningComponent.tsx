@@ -11,7 +11,7 @@ export default function SignInComponent() {
   const [email, setEmail] = useState("");
 
   return (
-    <div className="w-full max-w-md mx-auto bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+    <div className="w-full max-w-md mx-auto bg-white p-8 rounded-2xl shadow border border-gray-100">
       <div className="text-center mb-8">
         <div className="mx-auto w-max rounded-full flex items-center justify-center">
           <Image src='/uptrackLogo.png' alt="uptrackLogo" width={100} height={100} className=""></Image>
