@@ -106,7 +106,7 @@ export default function SignInComponent() {
               className="w-full flex items-center justify-center gap-3 px-5 py-3.5 rounded-lg text-gray-800 bg-gray-50 border border-gray-300 hover:bg-gray-100 transition-colors"
             >
               <FaGithub className="w-5 h-5" />
-              <span className="font-medium">Sign in with GitHub</span>
+              <span className="font-medium">Continue in with GitHub</span>
             </button>
 
             <button
@@ -114,7 +114,7 @@ export default function SignInComponent() {
               className="w-full flex items-center justify-center gap-3 px-5 py-3.5 rounded-lg text-gray-800 bg-gray-50 border border-gray-300 hover:bg-gray-100 transition-colors"
             >
               <FcGoogle className="w-5 h-5" />
-              <span className="font-medium">Sign in with Google</span>
+              <span className="font-medium">Continue in with Google</span>
             </button>
           </div>
 
@@ -123,7 +123,7 @@ export default function SignInComponent() {
             <p className="text-gray-600">
               Don't have an account?{" "}
               <a
-                href="#"
+                href="/signup"
                 className="font-medium text-orange-600 hover:text-orange-800 hover:underline"
               >
                 Sign up

@@ -16,9 +16,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.className} antialiased`}>
-        <div className="flex flex-col md:flex-row">
-          <div className="md:w-1/2">{children}</div>
-          <div className=" hidden bg-black md:w-1/2 md:flex justify-center items-center right-0 h-screen  fixed">
+        <div className="flex flex-col md:flex-row bg-gray-50 py-10">
+          <div className="md:w-1/2 ">{children}</div>
+          <div className=" hidden bg-black md:w-1/2 md:flex justify-center items-center right-0 h-screen  fixed  top-0">
             <div className="relative">
               <div className="flex items-center justify-center flex-col border-white">
                 <div className="mx-auto w-full  rounded-full flex items-center justify-center">

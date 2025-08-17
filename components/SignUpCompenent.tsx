@@ -1,34 +1,57 @@
 "use client";
 
 import { useState } from "react";
-import { FiUser, FiMail, FiLock, FiArrowRight } from "react-icons/fi";
+import { FiUser, FiMail, FiLock, FiArrowRight, FiLoader } from "react-icons/fi";
 import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
+import Image from "next/image";
+import signUpWithCredential, {
+  loginWithGitHub,
+  loginWithGoogle,
+} from "@/app/action/auth";
 
 export default function SignUpComponent() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setloading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     // Handle sign up logic here
-    console.log({ name, email, password });
+    try {
+      setloading(true);
+      const response = await signUpWithCredential(name, email, password);
+      console.log(response);
+      alert(response.msg);
+    } catch (error) {
+      console.log(error);
+      alert("Something went wrong ");
+    } finally {
+      setloading(false);
+    }
   };
 
   return (
     <section className="w-full flex min-h-screen bg-gray-50 items-center justify-center py-12">
       <div className="w-full max-w-md mx-auto bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-        <div className="text-center mb-8">
-          <div className="mx-auto bg-gradient-to-r from-green-600 to-green-800 w-16 h-16 rounded-full flex items-center justify-center mb-4">
-            <FiUser className="w-8 h-8 text-white" />
+        <div className="text-center mb-4">
+          <div className="mx-auto w-full  rounded-full flex items-center justify-center">
+            <Image
+              src="/uptrackLogo.png"
+              alt="uptrackLogo"
+              width={500}
+              height={0}
+              className=" w-[100px] border-white"
+            />
           </div>
-          <h2 className="text-2xl font-bold text-gray-800">Create Your Account</h2>
-          <p className="text-gray-600 mt-2">Join us to get started</p>
+          <h2 className="text-2xl font-bold text-gray-800">
+            Create Your Account
+          </h2>
         </div>
 
         <div className="space-y-5">
-          <form onSubmit={handleSubmit} className="space-y-5">
+          <form   className="space-y-5">
             {/* Name Input */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -43,7 +66,7 @@ export default function SignUpComponent() {
                   placeholder="Enter your full name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                 />
               </div>
             </div>
@@ -62,7 +85,7 @@ export default function SignUpComponent() {
                   placeholder="Enter your email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                 />
               </div>
             </div>
@@ -81,7 +104,7 @@ export default function SignUpComponent() {
                   placeholder="Create a password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                 />
               </div>
               <p className="text-xs text-gray-500 mt-2">
@@ -90,10 +113,20 @@ export default function SignUpComponent() {
             </div>
 
             <button
+            disabled={loading}
               type="submit"
-              className="bg-gradient-to-r from-green-600 to-green-800 text-white w-full py-3 text-lg rounded-lg cursor-pointer hover:from-green-700 hover:to-green-900 transition-all shadow-md flex items-center justify-center gap-2"
+              className="bg-gradient-to-r from-orange-600 to-orange-800 text-white w-full py-3 text-lg rounded-lg cursor-pointer hover:from-orange-700 hover:to-orange-900 transition-all shadow-md flex items-center justify-center gap-2"
+              onClick={(e)=>handleSubmit(e)}
             >
-              Create Account <FiArrowRight className="w-5 h-5" />
+              {!loading ? (
+                <>
+                  Create Account <FiArrowRight className="w-5 h-5" />
+                </>
+              ) : (
+                <>
+                  Creating Account <FiLoader className="animate-spin" />{" "}
+                </>
+              )}
             </button>
           </form>
 
@@ -109,19 +142,19 @@ export default function SignUpComponent() {
           {/* Sign-Up Buttons */}
           <div className="flex flex-col gap-3">
             <button
-              onClick={() => console.log("Sign up with GitHub")}
+              onClick={() => loginWithGitHub()}
               className="w-full flex items-center justify-center gap-3 px-5 py-3.5 rounded-lg text-gray-800 bg-gray-50 border border-gray-300 hover:bg-gray-100 transition-colors"
             >
               <FaGithub className="w-5 h-5" />
-              <span className="font-medium">Sign up with GitHub</span>
+              <span className="font-medium">Continue with GitHub</span>
             </button>
 
             <button
-              onClick={() => console.log("Sign up with Google")}
+              onClick={() => loginWithGoogle()}
               className="w-full flex items-center justify-center gap-3 px-5 py-3.5 rounded-lg text-gray-800 bg-gray-50 border border-gray-300 hover:bg-gray-100 transition-colors"
             >
               <FcGoogle className="w-5 h-5" />
-              <span className="font-medium">Sign up with Google</span>
+              <span className="font-medium">Continue with Google</span>
             </button>
           </div>
 
@@ -129,9 +162,9 @@ export default function SignUpComponent() {
           <div className="text-center mt-6">
             <p className="text-gray-600">
               Already have an account?{" "}
-              <a 
-                href="#" 
-                className="font-medium text-green-600 hover:text-green-800 hover:underline"
+              <a
+                href="/login"
+                className="font-medium text-orange-600 hover:text-orange-800 hover:underline"
               >
                 Sign in
               </a>
