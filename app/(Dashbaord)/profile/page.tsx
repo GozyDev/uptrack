@@ -1,9 +1,14 @@
 import { auth } from "@/auth";
 import Image from "next/image";
 import Link from "next/link";
+import { logout } from "../../action/auth";
+import { redirect } from "next/navigation";
 
 export default async function Profile() {
   const session = await auth();
+  if(!session){
+    redirect("/login")
+  }
   const user = session?.user;
 
   return (
@@ -18,6 +23,15 @@ export default async function Profile() {
             height={50}
             className="rounded-full"
           />
+
+          <form
+            action={async () => {
+              "use server"
+              await logout();
+            }}
+          >
+            <button>logout</button>
+          </form>
         </div>
       ) : (
         <div>

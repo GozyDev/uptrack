@@ -11,7 +11,10 @@ export async function loginWithGitHub() {
 
 // Google login
 export async function loginWithGoogle() {
-  await signIn("google");
+  await signIn("google", {
+    redirect: true,
+    callbackUrl: "/profile", // redirect them here after Google login
+  });
 }
 
 // Logout (no provider needed)
@@ -44,13 +47,12 @@ export default async function signUpWithCredential(
 
 export async function signInWithCredential(username: string, password: string) {
   try {
- const res =  await signIn("credentials", {
+    await signIn("credentials", {
       email: username,
       password,
       redirect: false,
+      callbackUrl: "/profile", // where to go after login
     });
-
-    console.log("server action",res)
   } catch (error) {
     console.log(error);
   }
