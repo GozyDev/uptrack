@@ -34,7 +34,7 @@ export default function SignUpComponent() {
 
   return (
     <section className="w-full flex min-h-screen bg-gray-50 items-center justify-center py-12">
-      <div className="w-full max-w-md mx-auto bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+      <div className="w-full max-w-xl mx-auto bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
         <div className="text-center mb-4">
           <div className="mx-auto w-full  rounded-full flex items-center justify-center">
             <Image
@@ -45,7 +45,7 @@ export default function SignUpComponent() {
               className=" w-[100px] border-white"
             />
           </div>
-          <h2 className="text-2xl font-bold text-gray-800">
+          <h2 className="text-2xl font-bold  bg-gradient-to-l from-[#cf0000] to-[#000000] text-transparent bg-clip-text">
             Create Your Account
           </h2>
         </div>

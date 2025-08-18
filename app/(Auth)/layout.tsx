@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.className} antialiased`}>
-        <div className="flex flex-col md:flex-row bg-gray-50 py-10">
+        <div className="flex flex-col md:flex-row bg-gray-50 ">
           <div className="md:w-1/2 ">{children}</div>
           <div className=" hidden bg-black md:w-1/2 md:flex justify-center items-center right-0 h-screen  fixed  top-0">
             <div className="relative">
@@ -31,7 +31,7 @@ export default function RootLayout({
                   />
                 </div>
                 <div className="hidden text-white/80 absolute top-5 p-2 rounded bg-gradient-to-tr from-black to-orange-700 backdrop-blur-sm right-[10]">
-                  <p className="text">Small steps today, big wins tomorrow.</p>
+                  <p className="text ">Small steps today, big wins tomorrow.</p>
                 </div>
               </div>
             </div>

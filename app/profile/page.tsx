@@ -1,4 +1,3 @@
-
 import { auth } from "@/auth";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,7 +11,13 @@ export default async function Profile() {
       {user ? (
         <div>
           <h1>Welcome back {user.name}</h1>
-          <Image src={user.image || ""} alt="profile image" width={50} height={50} className="rounded-full" />
+          <Image
+            src={user.image || "/uptrackLogo.png"}
+            alt="profile image"
+            width={50}
+            height={50}
+            className="rounded-full"
+          />
         </div>
       ) : (
         <div>

@@ -1,5 +1,6 @@
 "use server";
 import prisma from "@/lib/prisma";
+import { hash } from "bcryptjs";
 
 import { signIn, signOut } from "@/auth";
 
@@ -29,13 +30,28 @@ export default async function signUpWithCredential(
   if (existingUser) {
     return { msg: "user already exist", status: "failed" };
   }
+  const hashpassword = await hash(password, 10);
   const user = await prisma.user.create({
     data: {
       name,
       email,
-      password,
+      password: hashpassword,
     },
   });
 
   return { user, status: "success", msg: "created successfully" };
+}
+
+export async function signInWithCredential(username: string, password: string) {
+  try {
+ const res =  await signIn("credentials", {
+      email: username,
+      password,
+      redirect: false,
+    });
+
+    console.log("server action",res)
+  } catch (error) {
+    console.log(error);
+  }
 }

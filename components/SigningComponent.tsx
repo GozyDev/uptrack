@@ -1,20 +1,39 @@
 "use client";
 
-import { loginWithGitHub, loginWithGoogle } from "@/app/action/auth";
+import auth, {
+  loginWithGitHub,
+  loginWithGoogle,
+  signInWithCredential,
+} from "@/app/action/auth";
 import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
-import { FiUser, FiMail, FiLock } from "react-icons/fi";
+import { FiUser, FiMail, FiLock, FiArrowRight, FiLoader } from "react-icons/fi";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+
 
 export default function SignInComponent() {
+  
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setloading] = useState(false);
+  const router = useRouter()
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    console.log(username, password);
-  };
+
+    try {
+      setloading(true);
+      const res = await signInWithCredential(username, password);
+      router.push("/profile")
+    } catch (error) {
+      console.log(error);
+      alert("somthing went wrong ");
+    } finally {
+      setloading(false);
+    }
+  }
 
   return (
     <section className="w-full flex min-h-screen bg-gray-50 items-center justify-center  ">
@@ -83,10 +102,20 @@ export default function SignInComponent() {
             </div>
 
             <button
+              disabled={loading}
               type="submit"
-              className="bg-gradient-to-r from-orange-600 to-orange-800 text-white w-full py-3 text-lg rounded-lg cursor-pointer hover:from-orange-700 hover:to-orange-900 transition-all shadow-md"
+              className="bg-gradient-to-r from-orange-600 to-orange-800 text-white w-full py-3 text-lg rounded-lg cursor-pointer hover:from-orange-700 hover:to-orange-900 transition-all shadow-md flex items-center justify-center gap-2"
+              onClick={(e) => handleSubmit(e)}
             >
-              Sign in
+              {!loading ? (
+                <>
+                  Sign In <FiArrowRight className="w-5 h-5" />
+                </>
+              ) : (
+                <>
+                  Signing In <FiLoader className="animate-spin" />{" "}
+                </>
+              )}
             </button>
           </form>
 
