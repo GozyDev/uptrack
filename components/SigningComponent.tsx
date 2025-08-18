@@ -37,7 +37,7 @@ export default function SignInComponent() {
 
   return (
     <section className="w-full flex min-h-screen bg-gray-50 items-center justify-center  ">
-      <div className="w-full max-w-md mx-auto bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+      <div className="w-full max-w-xl  mx-auto bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
         <div className="text-center mb-8">
           <div className="mx-auto w-full  rounded-full flex items-center justify-center">
             <Image
