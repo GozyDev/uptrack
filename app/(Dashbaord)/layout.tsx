@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "../globals.css";
 import { poppins } from "@/lib/font";
+import DesktopNavbar from "@/components/DesktopNavbar";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -14,10 +15,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${poppins.className} antialiased`}
-      >
-        {children}
+      <body className={`${poppins.className} antialiased`}>
+        <section className="border h-screen flex ">
+          <aside className="w-[100px] bg-black/60 h-full fixed top-0 left-0">
+            <div>
+              <DesktopNavbar/>
+            </div>
+          </aside>
+          <div className="ml-[100px]">{children}</div>
+        </section>
       </body>
     </html>
   );
