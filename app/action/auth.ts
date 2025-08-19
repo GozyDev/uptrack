@@ -4,14 +4,6 @@ import { hash } from "bcryptjs";
 
 import { signIn, signOut } from "@/auth";
 
-// GitHub login
-export async function loginWithGitHub() {
-  await signIn("github", {
-    redirect: true,
-    callbackUrl: "/profile", // redirect them here after Google login
-  });
-}
-
 // Google login
 export async function loginWithGoogle() {
   await signIn("google", {

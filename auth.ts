@@ -22,7 +22,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         password: {},
       },
       async authorize(credentials) {
-        console.log(credentials.email , credentials.password)
+        console.log(credentials.email, credentials.password);
         if (!credentials?.email || !credentials?.password) {
           throw new Error("Missing email or password");
         }
@@ -53,5 +53,31 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
     }),
   ],
+  callbacks: {
+    async signIn({ user, account }) {
+      console.log("Account", account);
 
+      // user = info about the person (name, email, image)
+      // account = info about provider (google, github, etc.)
+
+      // Check if this user already exists in DB
+      const existingUser = await prisma.user.findUnique({
+        where: { email: user.email! },
+      });
+
+      // If not in DB, create them
+      if (!existingUser) {
+        await prisma.user.create({
+          data: {
+            email: user.email!,
+            name: user.name,
+            image: user.image,
+            // "google"
+          },
+        });
+      }
+
+      return true;
+    },
+  },
 });

@@ -1,17 +1,8 @@
 "use client";
 
-import { loginWithGitHub, loginWithGoogle, logout } from "@/app/action/auth";
+import { loginWithGoogle, logout } from "@/app/action/auth";
 
-const ButtonSignInGitHub = () => {
-  return (
-    <button
-      onClick={() => loginWithGitHub()}
-      className="px-5 py-3 rounded text-white bg-black"
-    >
-      Sign in with GitHub
-    </button>
-  );
-};
+
 
 const ButtonSignInGoogle = () => {
   return (
@@ -35,4 +26,4 @@ export const ButtonSignOut = () => {
   );
 };
 
-export { ButtonSignInGitHub, ButtonSignInGoogle };
+export {  ButtonSignInGoogle };

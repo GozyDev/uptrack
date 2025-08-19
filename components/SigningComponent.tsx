@@ -1,7 +1,7 @@
 "use client";
 
 import auth, {
-  loginWithGitHub,
+
   loginWithGoogle,
   signInWithCredential,
 } from "@/app/action/auth";
@@ -12,13 +12,11 @@ import { FiUser, FiMail, FiLock, FiArrowRight, FiLoader } from "react-icons/fi";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-
 export default function SignInComponent() {
-  
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setloading] = useState(false);
-  const router = useRouter()
+  const router = useRouter();
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -26,7 +24,7 @@ export default function SignInComponent() {
     try {
       setloading(true);
       const res = await signInWithCredential(username, password);
-      router.push("/profile")
+      router.push("/profile");
     } catch (error) {
       console.log(error);
       alert("somthing went wrong ");
@@ -129,15 +127,7 @@ export default function SignInComponent() {
           </div>
 
           {/* Sign-In Buttons */}
-          <div className="flex flex-col gap-3">
-            <button
-              onClick={() => loginWithGitHub()}
-              className="w-full flex items-center justify-center gap-3 px-5 py-3.5 rounded-lg text-gray-800 bg-gray-50 border border-gray-300 hover:bg-gray-100 transition-colors"
-            >
-              <FaGithub className="w-5 h-5" />
-              <span className="font-medium">Continue in with GitHub</span>
-            </button>
-
+          <div className="flex flex-col gap-3">  
             <button
               onClick={() => loginWithGoogle()}
               className="w-full flex items-center justify-center gap-3 px-5 py-3.5 rounded-lg text-gray-800 bg-gray-50 border border-gray-300 hover:bg-gray-100 transition-colors"

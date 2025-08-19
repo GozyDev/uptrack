@@ -6,7 +6,7 @@ import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import Image from "next/image";
 import signUpWithCredential, {
-  loginWithGitHub,
+
   loginWithGoogle,
 } from "@/app/action/auth";
 
@@ -141,14 +141,7 @@ export default function SignUpComponent() {
 
           {/* Sign-Up Buttons */}
           <div className="flex flex-col gap-3">
-            <button
-              onClick={() => loginWithGitHub()}
-              className="w-full flex items-center justify-center gap-3 px-5 py-3.5 rounded-lg text-gray-800 bg-gray-50 border border-gray-300 hover:bg-gray-100 transition-colors"
-            >
-              <FaGithub className="w-5 h-5" />
-              <span className="font-medium">Continue with GitHub</span>
-            </button>
-
+        
             <button
               onClick={() => loginWithGoogle()}
               className="w-full flex items-center justify-center gap-3 px-5 py-3.5 rounded-lg text-gray-800 bg-gray-50 border border-gray-300 hover:bg-gray-100 transition-colors"
