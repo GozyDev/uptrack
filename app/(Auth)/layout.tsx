@@ -23,7 +23,7 @@ export default function RootLayout({
               <div className="flex items-center justify-center flex-col border-white">
                 <div className="mx-auto w-full  rounded-full flex items-center justify-center">
                   <Image
-                    src="/uptrackLogoWhite.png"
+                    src="/hirelence.png"
                     alt="uptrackLogo"
                     width={500}
                     height={0}
@@ -31,7 +31,7 @@ export default function RootLayout({
                   />
                 </div>
                 <div className="hidden text-white/80 absolute top-5 p-2 rounded bg-gradient-to-tr from-black to-orange-700 backdrop-blur-sm right-[10]">
-                  <p className="text ">Small steps today, big wins tomorrow.</p>
+                  <p className="text">Small steps today, big wins tomorrow.</p>
                 </div>
               </div>
             </div>
