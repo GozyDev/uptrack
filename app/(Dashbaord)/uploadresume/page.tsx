@@ -1,5 +1,7 @@
+import UploadFile from "@/components/UploadFile";
+
 export default function Page(){
     return(
-        <h1>upload Page</h1>
+        <UploadFile/>
     )
 }  
