@@ -39,7 +39,7 @@ export default function SignInComponent() {
         <div className="text-center mb-8">
           <div className="mx-auto w-full  rounded-full flex items-center justify-center">
             <Image
-              src="/uptrackLogo.png"
+              src="/hirelence.png"
               alt="uptrackLogo"
               width={500}
               height={0}
@@ -52,7 +52,7 @@ export default function SignInComponent() {
         </div>
 
         <div className="space-y-5">
-          <form onSubmit={handleSubmit} className="space-y-5">
+          <form onSubmit={handleSubmit} className="space-y-5 flex flex-col gap-5">
             {/* User Name Input */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
