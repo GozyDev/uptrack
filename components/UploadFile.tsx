@@ -4,6 +4,7 @@ import { Upload, FileText, X, Loader2, CheckCircle } from "lucide-react";
 
 export default function ResumeUpload() {
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [bufffile, setBuffFile] = useState<ArrayBuffer | null>(null);
   const [file, setFile] = useState<File | null>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [uploadStatus, setUploadStatus] = useState<
@@ -38,7 +39,7 @@ export default function ResumeUpload() {
     }
   };
 
-  const validateAndSetFile = (selectedFile: File) => {
+  const validateAndSetFile = async (selectedFile: File) => {
     // Check file type
     const validTypes = [
       "application/pdf",
@@ -54,20 +55,20 @@ export default function ResumeUpload() {
       setErrorMessage("File size must be less than 5MB");
       return;
     }
-
+    const buffselectedFile = await selectedFile.arrayBuffer();
+   
     setErrorMessage("");
+    setBuffFile(buffselectedFile);
     setFile(selectedFile);
     uploadFile(selectedFile);
   };
 
-  const uploadFile = async (resumeFile: File) => {
+  const uploadFile = async (resumeFile:File) => {
     setUploadStatus("uploading");
 
     try {
       const formData = new FormData();
       formData.append("file", resumeFile);
-
-    
 
       // In a real implementation, you would use:
 
@@ -79,7 +80,7 @@ export default function ResumeUpload() {
       if (!res.ok) throw new Error("Upload failed");
 
       const data = await res.json();
-      console.log("Parsed Resume:", data.data);
+      console.log("Parsed Resume:", data.text);
 
       setUploadStatus("success");
     } catch (error) {

@@ -16,13 +16,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.className} antialiased`}>
-        <section className="border h-screen flex ">
-          <aside className="w-[100px] bg-black/60 h-full fixed top-0 left-0">
-            <div>
-              <DesktopNavbar/>
-            </div>
+        <section className=" h-screen flex ">
+          <aside className="w-max bg-black/60 h-full fixed top-0 left-0">
+            <DesktopNavbar />
           </aside>
-          <div className="ml-[100px]">{children}</div>
+          <div className="ml-[257px] p-5">{children}</div>
         </section>
       </body>
     </html>
