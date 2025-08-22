@@ -2,7 +2,7 @@
 import prisma from "@/lib/prisma";
 import { hash } from "bcryptjs";
 
-import { signIn, signOut } from "@/auth";
+import { auth, signIn, signOut } from "@/auth";
 
 // Google login
 export async function loginWithGoogle() {
@@ -51,4 +51,11 @@ export async function signInWithCredential(username: string, password: string) {
   } catch (error) {
     console.log(error);
   }
+}
+
+export async function getUserCredencial() {
+  const session = await auth()
+
+  const user = session?.user
+  return user
 }

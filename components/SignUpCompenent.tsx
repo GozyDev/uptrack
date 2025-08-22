@@ -51,7 +51,7 @@ export default function SignUpComponent() {
         </div>
 
         <div className="space-y-5">
-          <form   className="space-y-5">
+          <form   className="space-y-5 flex flex-col gap-5">
             {/* Name Input */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
